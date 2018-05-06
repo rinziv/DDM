@@ -41,6 +41,9 @@
         <div class="row">
           <HelloWorld></HelloWorld>
         </div>
+        <div class="row">
+          <MapLeaflet></MapLeaflet>
+        </div>
       </section>
       <!-- /.content -->
     </div>
@@ -52,11 +55,13 @@
 
 <script>
 import HelloWorld from './components/HelloWorld';
+import MapLeaflet from './components/MapLeaflet';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
+    MapLeaflet,
   },
   data() {
     return {

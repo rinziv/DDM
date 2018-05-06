@@ -3,6 +3,10 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 
+// Leaflet dependencies
+import 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
 import App from './App';
 import router from './router';
 
@@ -11,6 +15,7 @@ import router from './router';
 import 'va/lib/css';
 // eslint-disable-next-line
 import 'va/lib/script';
+
 
 Vue.config.productionTip = false;
 
