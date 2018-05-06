@@ -26,7 +26,7 @@
       </div>
     </nav>
   </header>
-  <!-- <Sidebar></Sidebar> -->
+  <Sidebar></Sidebar>
   <!-- Full Width Column -->
   <div class="content-wrapper">
     <div class="no-container">
@@ -56,12 +56,14 @@
 <script>
 import HelloWorld from './components/HelloWorld';
 import MapLeaflet from './components/MapLeaflet';
+import Sidebar from './components/Sidebar';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
     MapLeaflet,
+    Sidebar,
   },
   data() {
     return {
