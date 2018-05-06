@@ -8,9 +8,9 @@ import router from './router';
 
 
 // eslint-disable-next-line
-import 'vue2-admin-lte/src/lib/css';
+import 'va/lib/css';
 // eslint-disable-next-line
-import 'vue2-admin-lte/src/lib/script';
+import 'va/lib/script';
 
 Vue.config.productionTip = false;
 
