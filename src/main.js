@@ -9,6 +9,7 @@ import 'leaflet/dist/leaflet.css';
 
 import App from './App';
 import router from './router';
+import store from './store/store';
 
 
 // eslint-disable-next-line
@@ -27,4 +28,5 @@ new Vue({
   router,
   components: { App },
   template: '<App/>',
+  store,
 });

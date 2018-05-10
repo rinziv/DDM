@@ -3,9 +3,9 @@
   <header class="main-header">
     <a href="#" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>VA</b></span>
+      <span class="logo-mini"><b>DDM</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Visual Analytics</b> Dash</span>
+      <span class="logo-lg">Didactic Data Mining</span>
     </a>
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
