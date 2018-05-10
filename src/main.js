@@ -3,12 +3,9 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 
-// Leaflet dependencies
-import 'leaflet';
-import 'leaflet/dist/leaflet.css';
-
 import App from './App';
 import router from './router';
+// eslint-disable-next-line
 import store from './store/store';
 
 
