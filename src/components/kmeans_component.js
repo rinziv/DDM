@@ -10,6 +10,7 @@ export default function () {
     .range([300, 0]);
   const xa = d3.axisBottom(xs);
   const ya = d3.axisLeft(ys);
+  const colors = d3.scaleOrdinal(d3.schemeCategory10);
 
   let idxIteration = -1;
 
@@ -56,14 +57,15 @@ export default function () {
     if (!arguments.length) return idxIteration;
     idxIteration = _;
     if (idxIteration >= 0) {
-      const colors = ['red', 'green'];
-
       // draw points
       g.select('.points')
         .selectAll('circle')
         .data(datum.iterations[idxIteration].labels)
-        .attr('fill', d => colors[d])
+        .attr('fill', d => colors(d))
         .attr('opacity', 0.4);
+
+      // draw voronois
+      // https://bl.ocks.org/mbostock/3846051
 
       // draw centroids
       const centroids = g.select('.centroids')
@@ -76,7 +78,7 @@ export default function () {
         .attr('r', 7)
         .attr('cx', d => xs(d[0]))
         .attr('cy', d => ys(d[1]))
-        .attr('fill', 'darkgray');
+        .attr('fill', (d, i) => colors(i));
     }
   };
 
