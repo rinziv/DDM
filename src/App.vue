@@ -40,6 +40,7 @@
       <section class="content">
         <div class="row">
           <HelloWorld></HelloWorld>
+          <kMeans></kMeans>
         </div>
        </section>
       <!-- /.content -->
@@ -53,12 +54,14 @@
 <script>
 import HelloWorld from './components/HelloWorld';
 import Sidebar from './components/Sidebar';
+import kMeans from './components/kMeans';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
     Sidebar,
+    kMeans,
   },
   data() {
     return {
