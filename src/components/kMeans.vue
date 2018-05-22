@@ -94,6 +94,7 @@ export default {
         iterations: this.iterations,
       })
       .call(this.kmviz);
+    this.kmviz.setIteration(1);
   },
 };
 </script>
