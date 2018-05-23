@@ -1,13 +1,21 @@
 <template>
-<div class="col-md-9">
+<div class="col-md-6">
   <div class="box box-danger flows">
     <div class="box-header with-border">
       <h3 class="box-title"><i class="fa fa-angle-right"></i> {{title}}</h3>
     </div>
     <div class="box-body">
-      <p>There are {{testdata.length}} points</p>
-      <div id="kmeans-viz">
-        <svg width='100%' height='400'></svg>
+      <div class="block">
+        <span class="demonstration">Select iteration</span>
+        <el-slider
+          v-model="idxIteration"
+          :step="1"
+          :min = "0" :max="iterations.length -1"
+          show-stops show-input>
+        </el-slider>
+      </div>
+      <div id="kmeans-viz" class="col-md-12">
+        <svg width='100%' height='550'></svg>
       </div>
     </div>
     <!-- /.box-body -->
@@ -36,6 +44,7 @@ export default {
     return {
       title: 'kMeans',
       kmviz: kmeansViz(),
+      idxIteration: 0,
       testdata: [
         [1, 3],
         [1, 7],
@@ -94,7 +103,12 @@ export default {
         iterations: this.iterations,
       })
       .call(this.kmviz);
-    this.kmviz.setIteration(1);
+    this.kmviz.setIteration(0);
+  },
+  watch: {
+    idxIteration(val) {
+      this.kmviz.setIteration(val);
+    },
   },
 };
 </script>

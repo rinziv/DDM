@@ -39,7 +39,6 @@
       <!-- Main content -->
       <section class="content">
         <div class="row">
-          <HelloWorld></HelloWorld>
           <kMeans></kMeans>
         </div>
        </section>
@@ -72,5 +71,8 @@ export default {
 </script>
 
 <style>
-
+  g.polygons path{
+    stroke: #999;
+    opacity: 0.20;
+  }
 </style>

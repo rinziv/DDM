@@ -13,6 +13,8 @@ import store from './store/store';
 import 'va/lib/css';
 // eslint-disable-next-line
 import 'va/lib/script';
+// eslint-disable-next-line
+import 'element-ui/lib/theme-chalk/index.css';
 
 
 Vue.config.productionTip = false;
