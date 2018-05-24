@@ -58,6 +58,8 @@ export default new Vuex.Store({
           ['A', 'C', 'D'],
           ['A', 'D', 'E', 'F'],
         ],
+        min_supp: 0.3,
+        min_conf: 0.8,
         itemsets: [
           [
             [['A'], 0.3, ''],
