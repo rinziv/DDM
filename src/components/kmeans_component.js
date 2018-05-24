@@ -43,9 +43,9 @@ export default function () {
   }
 
   function me(selection) {
-    const boundaries = selection.node().parentNode.getBoundingClientRect();
-    // eslint-disable-next-line no-console
-    console.log('dimensions', boundaries);
+    // const boundaries = selection.node().parentNode.getBoundingClientRect();
+    // // eslint-disable-next-line no-console
+    // console.log('dimensions', boundaries);
 
     datum = selection.datum();
     // eslint-disable-next-line no-console
@@ -81,7 +81,7 @@ export default function () {
 
     const circles = g.select('.points')
       .selectAll('circle')
-      .data(selection.datum().dataset);
+      .data(selection.datum().data);
 
     circles.exit().remove();
     circles.enter()

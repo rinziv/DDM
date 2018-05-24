@@ -10,12 +10,12 @@
         <el-slider
           v-model="idxIteration"
           :step="1"
-          :min = "0" :max="iterations.length -1"
+          :min = "0" :max="clusteringSimulation.iterations.length -1"
           show-stops show-input>
         </el-slider>
       </div>
       <div id="kmeans-viz" class="col-md-12">
-        <svg width='100%' height='550'></svg>
+        <svg width='100%' height='430'></svg>
       </div>
     </div>
     <!-- /.box-body -->
@@ -45,65 +45,18 @@ export default {
       title: 'kMeans',
       kmviz: kmeansViz(),
       idxIteration: 0,
-      testdata: [
-        [1, 3],
-        [1, 7],
-        [0, 9],
-        [9, 4],
-        [7, 8],
-        [6, 1],
-        [0, 4],
-        [6, 0],
-        [6, 2],
-        [1, 5],
-      ],
-      iterations: [
-        {
-          centers: [
-            [1, 7],
-            [1, 5],
-          ],
-          labels: [1, 0, 0, 1, 0, 1, 1, 1, 1, 1],
-        },
-        {
-          centers: [
-            [2.6666666666666665, 8.0],
-            [4.142857142857143, 2.7142857142857144],
-          ],
-          labels: [1, 0, 0, 1, 0, 1, 1, 1, 1, 0],
-        },
-        {
-          centers: [
-            [2.25, 7.25],
-            [4.666666666666667, 2.3333333333333335],
-          ],
-          labels: [1, 0, 0, 1, 0, 1, 0, 1, 1, 0],
-        },
-        {
-          centers: [
-            [1.8, 6.6],
-            [5.6, 2.0],
-          ],
-          labels: [0, 0, 0, 1, 0, 1, 0, 1, 1, 0],
-        },
-        {
-          centers: [
-            [1.6666666666666667, 6.0],
-            [6.75, 1.75],
-          ],
-          labels: [0, 0, 0, 1, 0, 1, 0, 1, 1, 0],
-        },
-      ],
     };
   },
   mounted() {
     d3.select('#kmeans-viz svg')
-      .datum({
-        dataset: this.testdata,
-        iterations: this.iterations,
-      })
+      .datum(this.clusteringSimulation)
       .call(this.kmviz);
     this.kmviz.setIteration(0);
+  },
+  computed: {
+    clusteringSimulation() {
+      return this.$store.getters.clusteringSimulation;
+    },
   },
   watch: {
     idxIteration(val) {
