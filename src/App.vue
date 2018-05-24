@@ -10,11 +10,8 @@
     <nav class="navbar navbar-static-top">
       <!-- Sidebar toggle button-->
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </a>
+        <span class="sr-only">Toggle navigation</span>
+      </a>
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
@@ -52,6 +49,7 @@
 import HelloWorld from './components/HelloWorld';
 import Sidebar from './components/Sidebar';
 import kMeans from './components/kMeans';
+import aPriori from './components/apriori';
 
 export default {
   name: 'App',
@@ -59,6 +57,7 @@ export default {
     HelloWorld,
     Sidebar,
     kMeans,
+    aPriori,
   },
   data() {
     return {
@@ -72,5 +71,18 @@ export default {
   g.polygons path{
     stroke: #999;
     opacity: 0.20;
+  }
+
+  .el-tag{
+    margin-bottom:2px;
+    margin-right: 2px;
+  }
+
+  .el-tag.disabled{
+    background-color: #ddd;
+  }
+
+  .el-tag .el-icon-error{
+    color:darkgray;
   }
 </style>

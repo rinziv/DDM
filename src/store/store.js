@@ -45,7 +45,7 @@ export default new Vuex.Store({
       };
     },
     aprioriSimulation(/* state */) {
-      return {
+      const ad = {
         data: [
           ['C', 'D', 'E', 'F'],
           ['D', 'F'],
@@ -98,6 +98,12 @@ export default new Vuex.Store({
           [['F'], ['D'], 0.75, 'X', null],
         ],
       };
+      const items = {};
+      ad.data.forEach(b => b.forEach((i) => {
+        items[i] = 1;
+      }));
+      ad.items = items;
+      return ad;
     },
   },
   actions: {},
