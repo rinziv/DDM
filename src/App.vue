@@ -38,9 +38,7 @@
 
       <!-- Main content -->
       <section class="content">
-        <div class="row">
-          <kMeans></kMeans>
-        </div>
+        <router-view></router-view>
        </section>
       <!-- /.content -->
     </div>
