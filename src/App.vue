@@ -76,6 +76,7 @@ export default {
   .el-tag{
     margin-bottom:2px;
     margin-right: 2px;
+    color: #222;
   }
 
   .el-tag.disabled{
@@ -84,5 +85,23 @@ export default {
 
   .el-tag .el-icon-error{
     color:darkgray;
+  }
+
+  .el-tag .el-icon-success{
+    color: green;
+  }
+
+  .rule-box{
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgba(64,158,255,.1);
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border: 1px solid rgba(64,158,255,.2);
+    border-radius: 4px;
+  }
+
+  .rule-box.disabled{
+    background-color: lightgray;
   }
 </style>
