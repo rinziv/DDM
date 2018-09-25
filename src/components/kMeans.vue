@@ -41,10 +41,13 @@
           <label class="col-sm-3 control-label">Distance Function</label>
 
           <div class="col-sm-9">
-            <select name="distanceFunction" id="inputDistance" v-model="params.distance">
-              <option value="euclidean">Euclidean</option>
-              <option value="manhattan">Manhattan</option>
-            </select>
+            <el-select v-model="params.distance">
+              <el-option
+                v-for="item in configuration.distance_function"
+                :key="item.key"
+                :label="item.label" :value="item.key"
+              ></el-option>
+            </el-select>
             <span class="help-block">Distance function to measure
               closeness of points to centroids</span>
           </div>

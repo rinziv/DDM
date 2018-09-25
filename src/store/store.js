@@ -99,10 +99,9 @@ export default new Vuex.Store({
   actions: {
     loadKMeansExperiment(context, payload) {
       const params = prepareRequestParameters(payload);
-      console.log('params', payload);
       instance.post('KmeansExperiment', params)
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           context.commit('kMeansSimulation', response.data);
         });
     },
