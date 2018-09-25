@@ -79,13 +79,14 @@ export default function () {
         .classed('centroids', true);
     }
 
-    const circles = g.select('.points')
+    let circles = g.select('.points')
       .selectAll('circle')
       .data(selection.datum().data);
 
     circles.exit().remove();
-    circles.enter()
+    circles = circles.enter()
       .append('circle')
+      .merge(circles)
       .attr('r', r)
       .attr('cx', d => xs(d[0]))
       .attr('cy', d => ys(d[1]));
