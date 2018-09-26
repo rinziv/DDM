@@ -90,6 +90,7 @@ export default function () {
       .attr('r', r)
       .attr('cx', d => xs(d[0]))
       .attr('cy', d => ys(d[1]));
+    // todo: add labels with point id
   }
 
   // eslint-disable-next-line

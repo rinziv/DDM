@@ -83,6 +83,7 @@
 
     <div class="box-footer">
       Small description of the content of the box
+      <!--todo: add an extensive description-->
     </div>
     <!-- /.box-footer-->
     <!--<div class="overlay">-->
