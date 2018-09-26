@@ -24,7 +24,7 @@
           <label class="col-sm-3 control-label">Centroid 1</label>
 
           <div class="col-sm-9">
-            <el-input-number v-model="params.c1" :min="1" :max="10"></el-input-number>
+            <el-input-number v-model="params.c1" :min="1" :max="10" size="small"></el-input-number>
             <span class="help-block">Index of first point to use as centroid</span>
           </div>
         </div>
@@ -32,7 +32,7 @@
           <label class="col-sm-3 control-label">Centroid 2</label>
 
           <div class="col-sm-9">
-            <el-input-number v-model="params.c2" :min="1" :max="10"></el-input-number>
+            <el-input-number v-model="params.c2" :min="1" :max="10" size="small"></el-input-number>
             <span class="help-block">Index of second point to use as centroid</span>
           </div>
 
@@ -41,7 +41,7 @@
           <label class="col-sm-3 control-label">Distance Function</label>
 
           <div class="col-sm-9">
-            <el-select v-model="params.distance">
+            <el-select v-model="params.distance" size="small">
               <el-option
                 v-for="item in configuration.distance_function"
                 :key="item.key"
@@ -55,7 +55,8 @@
       </div>
       <!-- /.box-body -->
       <div class="box-footer">
-        <el-button type="primary" v-on:click="runComputation">Primary</el-button>
+        <!--todo: include a check for parameters constraints -->
+        <el-button type="primary" v-on:click="runComputation">Run...</el-button>
       </div>
       <!-- /.box-footer -->
     </form>
@@ -111,7 +112,7 @@ export default {
         distance: 'euclidean',
         dataset: 'dataset1',
       },
-      configuration: {
+      configuration: { // todo: this part should go in an external file
         parameters: [
           {
             key: 'dataset',
