@@ -13,8 +13,9 @@
             </span>
           </a>
           <ul class="treeview-menu" style="display:block">
-            <li><router-link to="/kMeans"><i class="fa fa-circle-o"></i>kMeans</router-link></li>
-            <li><router-link to="/aPriori"><i class="fa fa-circle-o"></i>Apriori</router-link></li>
+            <li v-for="l in links">
+              <router-link :to="l.link"><i class="fa fa-circle-o"></i>{{l.label}}</router-link>
+            </li>
           </ul>
         </li>
       </ul>
@@ -28,6 +29,20 @@ export default {
   name: 'Sidebar',
   data() {
     return {
+      links: [
+        {
+          link: '/kMeans',
+          label: 'kMeans',
+        },
+        {
+          link: '/dbscan',
+          label: 'DBScan',
+        },
+        {
+          link: '/aPriori',
+          label: 'Apriori',
+        },
+      ]
     };
   },
 };

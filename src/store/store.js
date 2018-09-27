@@ -22,6 +22,7 @@ export default new Vuex.Store({
   state: {
     data: 'test',
     kMeansSimulation: {},
+    DBScanSimulation: {},
     aPrioriSimulation: {},
   },
   mutations: {
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     aPrioriSimulation(state, payload) {
       state.aPrioriSimulation = payload;
     },
+    DBScanSimulation(state, payload) {
+      state.DBScanSimulation = payload;
+    },
   },
   getters: {
     kMeansSimulation(state) {
@@ -38,6 +42,9 @@ export default new Vuex.Store({
     },
     aPrioriSimulation(state) {
       return state.aPrioriSimulation;
+    },
+    DBScanSimulation(state) {
+      return state.DBScanSimulation;
     },
   },
   actions: {
@@ -57,5 +64,14 @@ export default new Vuex.Store({
           context.commit('aPrioriSimulation', response.data);
         });
     },
+    loadAnExperiment(context, payload) {
+      const params = prepareRequestParameters(payload.params);
+      instance.post(payload.link, params)
+        .then((response) => {
+          console.log(response);
+          context.commit(payload.setter, response.data);
+        });
+    },
+
   },
 });
