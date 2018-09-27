@@ -13,7 +13,7 @@
             </span>
           </a>
           <ul class="treeview-menu" style="display:block">
-            <li v-for="l in links">
+            <li v-for="l in links" :key="l.link">
               <router-link :to="l.link"><i class="fa fa-circle-o"></i>{{l.label}}</router-link>
             </li>
           </ul>
@@ -42,7 +42,7 @@ export default {
           link: '/aPriori',
           label: 'Apriori',
         },
-      ]
+      ],
     };
   },
 };

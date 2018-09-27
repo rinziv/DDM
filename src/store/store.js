@@ -68,7 +68,6 @@ export default new Vuex.Store({
       const params = prepareRequestParameters(payload.params);
       instance.post(payload.link, params)
         .then((response) => {
-          console.log(response);
           context.commit(payload.setter, response.data);
         });
     },

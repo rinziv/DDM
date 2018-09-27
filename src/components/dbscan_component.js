@@ -72,6 +72,21 @@ export default function () {
         .classed('y-axis', true)
         .attr('transform', 'translate(0,0)')
         .call(customYAxis);
+      const neighbs = g.append('g')
+        .classed('neighborhood', true)
+        .attr('transform', `translate(${xs(9)},${ys(9)})`);
+      neighbs
+        .append('circle')
+        .attr('r', xs(1.8))
+        .attr('fill', 'none')
+        .attr('stroke', 'darkgray')
+        .attr('stroke-dasharray', '4');
+      neighbs
+        .append('line')
+        .attr('x2', xs(1.8))
+        .attr('stroke', 'darkgray')
+        .attr('stroke-weight', 1)
+        .attr('stroke-dasharray', '4');
       g.append('g')
         .classed('points', true);
       g.append('g')
@@ -89,16 +104,28 @@ export default function () {
       .merge(circles)
       .attr('r', r)
       .attr('cx', d => xs(d[0]))
-      .attr('cy', d => ys(d[1]));
+      .attr('cy', d => ys(d[1]))
+      .on('mouseover', (d) => {
+        g.select('.neighborhood')
+          .transition()
+          .duration(500)
+          .ease(d3.easeLinear)
+          .attr('transform', `translate(${xs(d[0])},${ys(d[1])})`)
+        ;
+      });
+    g.select('.points').on('mouseout', () => {
+      g.select('.neighborhood')
+        .transition()
+        .duration(500)
+        .ease(d3.easeLinear)
+        .attr('transform', `translate(${xs(9)},${ys(9)})`)
+      ;
+    });
     // todo: add labels with point id
   }
 
   // eslint-disable-next-line
   me.setIteration = function(_) {
-    const t = d3.transition()
-      .duration(750)
-      .ease(d3.easeLinear);
-
     // eslint-disable-next-line
     if (!arguments.length) return idxIteration;
     idxIteration = _;
@@ -108,8 +135,6 @@ export default function () {
 
       d3.range(idxIteration).forEach((d) => {
         const key = labels[d + 1];
-        console.log(key);
-        console.log(datum.iterations[d]);
         datum.iterations[d][key].forEach((p) => { plabels[p] = key; });
       });
 
@@ -117,9 +142,6 @@ export default function () {
         p[0], p[1], plabels[i],
       ]));
 
-      console.log(plabels);
-
-      console.log('datum', datum);
       // draw points
       g.select('.points')
         .selectAll('circle')
@@ -129,16 +151,17 @@ export default function () {
 
       const entries = g.select('.legend')
         .selectAll('g.entries')
-        .data(labels);
+        .data(labels.slice(0, idxIteration + 1));
 
       entries.exit().remove();
       const gs = entries.enter()
         .append('g')
         .classed('entries', true)
-        .attr('transform', (d,i) => `translate(0, ${i * 2 * (r + 1)})`);
+        .attr('transform', (d, i) => `translate(0, ${i * 2 * (r + 1)})`)
+        ;
       gs
         .append('text')
-        .attr('x', 2 * (r+1))
+        .attr('x', 2 * (r + 1))
         .attr('dy', r / 2)
         .text(d => d);
 
@@ -148,7 +171,8 @@ export default function () {
         .attr('x', r / 2)
         .attr('y', r / 2)
         .attr('fill', d => colors(d))
-        .attr('opacity', 0.4);
+        .attr('opacity', 0.4)
+      ;
 
       // draw voronois
       // https://bl.ocks.org/mbostock/3846051

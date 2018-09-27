@@ -167,7 +167,7 @@ export default {
       d3.select(this.$refs['dbscan-viz']).select('svg')
         .datum(val)
         .call(this.dbsviz);
-      // this.dbsviz.setIteration(0);
+      this.dbsviz.setIteration(0);
     },
     idxIteration(val) {
       this.dbsviz.setIteration(val);
