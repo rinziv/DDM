@@ -128,15 +128,35 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <el-tree :data="tree"
-                 :props="defaultProps"
-                 :default-expand-all="true"
-                 :render-content="renderNode"
-                 :expand-on-click-node="false"
-                 @node-click="handleNodeClick"></el-tree>
+        <boxFrame title="Tree model">
+          <el-tree :data="tree"
+                   :props="defaultProps"
+                   :default-expand-all="true"
+                   :render-content="renderNode"
+                   :expand-on-click-node="false"
+                   @node-click="handleNodeClick"></el-tree>
+        </boxFrame>
       </div>
       <div class="col-md-6">
-        <pre> </pre>
+        <boxFrame title="Explanation">
+          <div class="row">
+            <div v-if="childrenGains" class="col-md-12">
+                <el-table
+                  :data="childrenGains" size="mini"
+                  max-height="250"
+                  :default-sort = "{prop: 'gain', order: 'descending'}"
+                  style="width: 100%">
+                  <el-table-column
+                    label="Attribute" prop="attribute">
+                  </el-table-column>
+                  <el-table-column
+                    label="Gain" prop="gain">
+                  </el-table-column>
+                </el-table>
+            </div>
+          </div>
+          <pre>{{selectedNode.calculus}}</pre>
+        </boxFrame>
       </div>
     </div>
   </div>
@@ -162,6 +182,7 @@ export default {
         children: 'children',
         label: this.treeLabel,
       },
+      selectedNode: {}, // the node clicked on the tree
       configuration: {
         parameters: [
           {
@@ -227,6 +248,17 @@ export default {
     tree() {
       return [this.simulation.tree];
     },
+    childrenGains() {
+      if (this.selectedNode.children_gain) {
+        return Object.entries(this.selectedNode.children_gain)
+          .map(e => ({
+            attribute: e[0].split('#').join(': '),
+            gain: e[1],
+          }));
+      }
+
+      return false;
+    },
     dataset() {
       return field => this.simulation[field].map((r) => {
         const res = {};
@@ -248,6 +280,7 @@ export default {
     },
     handleNodeClick(data) {
       console.log(data);
+      this.selectedNode = data;
     },
     treeLabel(data) {
       // Root_Contract#Travel-Young&Classic?Travel-Young_Minutes#50?<=50.0
@@ -294,4 +327,6 @@ export default {
   .el-tree-node__content{
     height:auto;
   }
+
+  
 </style>
