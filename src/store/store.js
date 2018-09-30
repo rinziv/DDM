@@ -24,6 +24,7 @@ export default new Vuex.Store({
     kMeansSimulation: {},
     DBScanSimulation: {},
     aPrioriSimulation: {},
+    DecisionTreeSimulation: {},
   },
   mutations: {
     kMeansSimulation(state, payload) {
@@ -35,6 +36,9 @@ export default new Vuex.Store({
     DBScanSimulation(state, payload) {
       state.DBScanSimulation = payload;
     },
+    DecisionTreeSimulation(state, payload) {
+      state.DecisionTreeSimulation = payload;
+    },
   },
   getters: {
     kMeansSimulation(state) {
@@ -45,6 +49,9 @@ export default new Vuex.Store({
     },
     DBScanSimulation(state) {
       return state.DBScanSimulation;
+    },
+    DecisionTreeSimulation(state) {
+      return state.DecisionTreeSimulation;
     },
   },
   actions: {
@@ -68,6 +75,7 @@ export default new Vuex.Store({
       const params = prepareRequestParameters(payload.params);
       instance.post(payload.link, params)
         .then((response) => {
+          console.log(response.data);
           context.commit(payload.setter, response.data);
         });
     },

@@ -42,6 +42,10 @@ export default {
           link: '/aPriori',
           label: 'Apriori',
         },
+        {
+          link: '/decisiontree',
+          label: 'Decision Tree',
+        },
       ],
     };
   },
