@@ -1,13 +1,8 @@
 <template>
-<div class="col-md-6">
-  <div class="box box-info">
-    <div class="box-header with-border">
-      <h3 class="box-title">kMeans Parameters</h3>
-    </div>
-    <!-- /.box-header -->
-    <!-- form start -->
-    <form class="form-horizontal">
-      <div class="box-body">
+<div>
+  <div class="row">
+    <div class="col-md-9">
+      <boxFrame title="kMeans Parameters">
         <div class="form-group">
           <label class="col-sm-3 control-label">Dataset</label>
           <div class="col-sm-9">
@@ -52,45 +47,32 @@
               closeness of points to centroids</span>
           </div>
         </div>
-      </div>
-      <!-- /.box-body -->
-      <div class="box-footer">
-        <!--todo: include a check for parameters constraints -->
-        <el-button type="primary" v-on:click="runComputation">Run...</el-button>
-      </div>
-      <!-- /.box-footer -->
-    </form>
+        <div class="block">
+          <el-button type="primary" v-on:click="runComputation">Run...</el-button>
+        </div>
+      </boxFrame>
+    </div>
   </div>
-  <div class="box box-danger flows">
-    <div class="box-header with-border">
-      <h3 class="box-title"><i class="fa fa-angle-right"></i> {{title}}</h3>
+  <div class="row">
+    <div class="col-md-9">
+      <boxFrame :title="title">
+        <div class="block">
+          <span class="demonstration">Select iteration</span>
+          <el-slider
+            v-model="idxIteration"
+            :step="1"
+            :min = "0" :max="numIterations"
+            show-stops show-input>
+          </el-slider>
+        </div>
+        <div class="block">
+          <div id="kmeans-viz" class="col-md-12">
+            <svg width='100%' height='430'></svg>
+          </div>
+        </div>
+      </boxFrame>
     </div>
-    <div class="box-body">
-      <div class="block">
-        <span class="demonstration">Select iteration</span>
-        <el-slider
-          v-model="idxIteration"
-          :step="1"
-          :min = "0" :max="numIterations"
-          show-stops show-input>
-        </el-slider>
-      </div>
-      <div id="kmeans-viz" class="col-md-12">
-        <svg width='100%' height='430'></svg>
-      </div>
-    </div>
-    <!-- /.box-body -->
-
-    <div class="box-footer">
-      Small description of the content of the box
-      <!--todo: add an extensive description-->
-    </div>
-    <!-- /.box-footer-->
-    <!--<div class="overlay">-->
-    <!--<i class="fa fa-refresh fa-spin"></i>-->
-    <!--</div>-->
   </div>
-  <!-- /.box -->
 </div>
 </template>
 

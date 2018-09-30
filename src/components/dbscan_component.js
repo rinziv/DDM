@@ -16,6 +16,7 @@ export default function () {
   const labels = ['unvisited', 'core', 'border', 'noise'];
   const colors = d3.scaleOrdinal(d3.schemeCategory10)
     .domain(labels);
+  let eps = 2.8;
 
 
   let idxIteration = -1;
@@ -48,6 +49,7 @@ export default function () {
     // console.log('dimensions', boundaries);
 
     datum = selection.datum();
+    eps = datum.parameters.eps;
     // eslint-disable-next-line no-console
     console.log('dbsviz', datum);
     idxIteration = 0;
@@ -77,13 +79,12 @@ export default function () {
         .attr('transform', `translate(${xs(9)},${ys(9)})`);
       neighbs
         .append('circle')
-        .attr('r', xs(1.8))
         .attr('fill', 'none')
         .attr('stroke', 'darkgray')
         .attr('stroke-dasharray', '4');
       neighbs
         .append('line')
-        .attr('x2', xs(1.8))
+        .attr('x2', xs(eps))
         .attr('stroke', 'darkgray')
         .attr('stroke-weight', 1)
         .attr('stroke-dasharray', '4');
@@ -105,7 +106,7 @@ export default function () {
       .attr('r', r)
       .attr('cx', d => xs(d[0]))
       .attr('cy', d => ys(d[1]))
-      .on('mouseover', (d) => {
+      .on('click', (d) => {
         g.select('.neighborhood')
           .transition()
           .duration(500)
@@ -113,14 +114,17 @@ export default function () {
           .attr('transform', `translate(${xs(d[0])},${ys(d[1])})`)
         ;
       });
-    g.select('.points').on('mouseout', () => {
-      g.select('.neighborhood')
-        .transition()
-        .duration(500)
-        .ease(d3.easeLinear)
-        .attr('transform', `translate(${xs(9)},${ys(9)})`)
-      ;
-    });
+    // g.select('.points').on('mouseout', () => {
+    //   g.select('.neighborhood')
+    //     .transition()
+    //     .duration(500)
+    //     .ease(d3.easeLinear)
+    //     .attr('transform', `translate(${xs(9)},${ys(9)})`)
+    //   ;
+    // });
+
+    g.select('.neighborhood').selectAll('circle')
+      .attr('r', xs(eps));
     // todo: add labels with point id
   }
 
