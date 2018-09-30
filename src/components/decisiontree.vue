@@ -59,7 +59,7 @@
           <div class="box-body">
             <div v-if="simulation">
               <el-table
-                :data="training"
+                :data="training" size="mini"
                 style="width: 100%">
                 <el-table-column
                   label="Col 1" prop="col1">
@@ -96,7 +96,7 @@
           <div class="box-body">
             <div v-if="simulation">
               <el-table
-                :data="test"
+                :data="test" size="mini"
                 style="width: 100%">
                 <el-table-column
                   label="Col 1" prop="col1">
@@ -127,11 +127,16 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <el-tree :data="tree"
                  :props="defaultProps"
                  :default-expand-all="true"
+                 :render-content="renderNode"
+                 :expand-on-click-node="false"
                  @node-click="handleNodeClick"></el-tree>
+      </div>
+      <div class="col-md-6">
+        <pre> </pre>
       </div>
     </div>
   </div>
@@ -244,8 +249,38 @@ export default {
     handleNodeClick(data) {
       console.log(data);
     },
-    treeLabel(data, node){
-      return data.name;
+    treeLabel(data) {
+      // Root_Contract#Travel-Young&Classic?Travel-Young_Minutes#50?<=50.0
+      const n = data.name;
+      const levels = n.split('_');
+      const ll = levels[levels.length - 1]; // get last level
+      const tc = ll.split('?')[1];
+
+
+      return levels.length > 1 ? `is ${tc}?` : 'Root';
+    },
+    renderNode(createElement, payload) {
+      console.log('payload', payload);
+
+      const elements = [
+        createElement('h4', this.treeLabel(payload.data)),
+        createElement('h5', `Classes: ${Object.entries(payload.data.values)
+          .map(e => e.join(': '))
+          .join(', ')}`),
+      ];
+
+      if (payload.node.childNodes.length > 0) {
+        const fc = payload.node.childNodes[0].data.name; // get first child
+        const cl = fc.split('_'); // get child levels
+        const ll = cl[cl.length - 1]; // get last level
+        const tc = ll.split('?')[0].split('#');
+
+        elements.push(
+          createElement('h5', `Test class: ${tc[0]} (${tc[1]})`),
+        );
+      }
+
+      return createElement('div', {}, elements);
     },
   },
   watch: {
@@ -255,3 +290,8 @@ export default {
   },
 };
 </script>
+<style>
+  .el-tree-node__content{
+    height:auto;
+  }
+</style>
