@@ -104,4 +104,8 @@ export default {
   .rule-box.disabled{
     background-color: lightgray;
   }
+
+  #app .el-tree-node__content {
+    height:auto;
+  }
 </style>

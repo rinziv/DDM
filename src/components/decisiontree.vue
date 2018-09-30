@@ -283,10 +283,3 @@ export default {
   },
 };
 </script>
-<style>
-  .el-tree-node__content{
-    height:auto;
-  }
-
-
-</style>
