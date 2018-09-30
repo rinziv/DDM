@@ -5,7 +5,8 @@ import axios from 'axios';
 Vue.use(Vuex);
 
 const instance = axios.create({
-  baseURL: 'http://matlaspisa.isti.cnr.it:5005/api',
+  // baseURL: 'http://matlaspisa.isti.cnr.it:5005/api',
+  baseURL: 'https://kdd.isti.cnr.it/ddm_api',
   // baseURL: 'http://localhost:5000/api',
 });
 
