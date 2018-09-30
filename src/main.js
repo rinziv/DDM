@@ -16,11 +16,14 @@ import 'va/lib/script';
 // eslint-disable-next-line
 import 'element-ui/lib/theme-chalk/index.css';
 
+import BoxFrame from '@/components/boxFrame';
+
 
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
 Vue.use(router);
+Vue.component('boxFrame', BoxFrame);
 
 /* eslint-disable no-new */
 new Vue({
