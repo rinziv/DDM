@@ -52,78 +52,30 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div class="box box-danger flows">
-          <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-angle-right"></i> Training set</h3>
+        <boxFrame title="Training set">
+          <div v-if="simulation">
+            <el-table
+              :data="training" size="mini"
+              style="width: 100%">
+              <el-table-column v-for="c in columns" :key="c.prop"
+                               :label="c.label" :prop="c.prop"
+              ></el-table-column>
+            </el-table>
           </div>
-          <div class="box-body">
-            <div v-if="simulation">
-              <el-table
-                :data="training" size="mini"
-                style="width: 100%">
-                <el-table-column
-                  label="Col 1" prop="col1">
-                </el-table-column>
-                <el-table-column
-                  label="Col 2" prop="col2">
-                </el-table-column>
-                <el-table-column
-                  label="Col 3" prop="col3">
-                </el-table-column>
-                <el-table-column
-                  label="Col 4" prop="col4">
-                </el-table-column>
-              </el-table>
-            </div>
-          </div>
-          <!-- /.box-body -->
-
-          <div class="box-footer">
-            <!--todo: add an extensive description-->
-          </div>
-          <!-- /.box-footer-->
-          <!--<div class="overlay">-->
-          <!--<i class="fa fa-refresh fa-spin"></i>-->
-          <!--</div>-->
-        </div>
-        <!-- /.box -->
+        </boxFrame>
       </div>
       <div class="col-md-6">
-        <div class="box box-danger flows">
-          <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-angle-right"></i> Test set</h3>
+        <boxFrame title="Test set">
+          <div v-if="simulation">
+            <el-table
+              :data="test" size="mini"
+              style="width: 100%">
+              <el-table-column v-for="c in columns" :key="c.prop"
+                :label="c.label" :prop="c.prop"
+              ></el-table-column>
+            </el-table>
           </div>
-          <div class="box-body">
-            <div v-if="simulation">
-              <el-table
-                :data="test" size="mini"
-                style="width: 100%">
-                <el-table-column
-                  label="Col 1" prop="col1">
-                </el-table-column>
-                <el-table-column
-                  label="Col 2" prop="col2">
-                </el-table-column>
-                <el-table-column
-                  label="Col 3" prop="col3">
-                </el-table-column>
-                <el-table-column
-                  label="Col 4" prop="col4">
-                </el-table-column>
-              </el-table>
-            </div>
-          </div>
-          <!-- /.box-body -->
-
-          <div class="box-footer">
-            <!--todo: add an extensive description-->
-          </div>
-          <!-- /.box-footer-->
-          <!--<div class="overlay">-->
-          <!--<i class="fa fa-refresh fa-spin"></i>-->
-          <!--</div>-->
-        </div>
-        <!-- /.box -->
+        </boxFrame>
       </div>
     </div>
     <div class="row">
@@ -134,6 +86,7 @@
                    :default-expand-all="true"
                    :render-content="renderNode"
                    :expand-on-click-node="false"
+                   :highlight-current="true"
                    @node-click="handleNodeClick"></el-tree>
         </boxFrame>
       </div>
@@ -245,6 +198,13 @@ export default {
     test() {
       return this.dataset('test');
     },
+    columns() {
+      // todo: make this dynamic and linked with REST service
+      return ['Contract', 'Sex', 'Minutes', 'Churn'].map((v, i) => ({
+        label: v,
+        prop: `col${i+1}`,
+      }));
+    },
     tree() {
       return [this.simulation.tree];
     },
@@ -328,5 +288,5 @@ export default {
     height:auto;
   }
 
-  
+
 </style>
