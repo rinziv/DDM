@@ -1,7 +1,7 @@
 {
-  "name": "vuelteskel",
+  "name": "didactic_data_mining",
   "version": "1.0.0",
-  "description": "A sletal application with Vue.js and AdminLTE",
+  "description": "A tool to learn how the algorithms of Data Mining work",
   "author": "Salvo Rinzivillo <rinzivillo@isti.cnr.it>",
   "private": true,
   "scripts": {
