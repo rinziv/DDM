@@ -23,5 +23,9 @@ npm run build
 ```
 This mode creates static files that have to be served by some webserver (Apache, nginx or whatever you want). If you open your `index` file as `file://`, the project doesn't work due some security rules of the browser.
 
-
-
+### Run it in the container
+In order to run the docker container you can build your image using the `Dockerfile` or just type
+```bash
+docker run -p 8080:80 alessandro308/ddm:webserver
+```
+and then, see the page at `http://localhost:8080`
