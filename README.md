@@ -1,21 +1,27 @@
-# vuelteskel
+# Didactic Data Mining
 
-> A sletal application with Vue.js and AdminLTE
+> A frontend for the Didactic Data Mining project
 
-## Build Setup
+# Executing this project
+This project is the frontend for the tool. In order to execute the backend, you have to execute the backend first. 
 
-``` bash
-# install dependencies
+To execute the backend (RESTful APIs), please, follow the instructions in [this repository](https://github.com/alessandro308/DDM_rest)
+
+Then, execute the following commands:
+
+### Developing mode (hot reload active)
+```bash
 npm install
-
-# serve with hot reload at localhost:8080
 npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
+With this mode, you can simply open your browser at `http://localhost:8080` and start to learn!
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### Production mode
+```
+npm install
+npm run build
+```
+This mode creates static files that have to be served by some webserver (Apache, nginx or whatever you want). If you open your `index` file as `file://`, the project doesn't work due some security rules of the browser.
+
+
+
